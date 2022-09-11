@@ -13,6 +13,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import Checkbox from '@mui/material/Checkbox';
 import FormLabel from '@mui/material/FormLabel';
 
 import { Disclosure, Transition } from '@headlessui/react'
@@ -54,14 +56,14 @@ export default function MenuItems() {
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                     >
-                        <Disclosure.Panel className="text-gray-500">
+                        <Disclosure.Panel className="text-gray-800">
                             <div className="flex pl-[6%]">
 
                                 <FormControl>
                                     <RadioGroup
-                                        aria-labelledby="demo-radio-buttons-group-label"
+                                        aria-labelledby="maps-type-label"
                                         defaultValue="gms"
-                                        name="radio-buttons-group"
+                                        name="maps-type-group"
                                     >
                                         <FormControlLabel value="gms" control={<Radio />} label="Google Maps (Satelit)" />
                                         <FormControlLabel value="gmj" control={<Radio />} label="Google Maps (Jalan)" />
@@ -94,20 +96,13 @@ export default function MenuItems() {
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                     >
-                        <Disclosure.Panel className="text-gray-500">
+                        <Disclosure.Panel className="text-gray-800">
                             <div className="flex pl-[6%]">
 
-                                <FormControl>
-                                    <RadioGroup
-                                        aria-labelledby="demo-radio-buttons-group-label"
-                                        defaultValue="gms"
-                                        name="radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="gms" control={<Radio />} label="Google Maps (Satelit)" />
-                                        <FormControlLabel value="gmj" control={<Radio />} label="Google Maps (Jalan)" />
-                                        <FormControlLabel value="osm" control={<Radio />} label="Open Street Map" />
-                                    </RadioGroup>
-                                </FormControl>
+                                <FormGroup>
+                                    <FormControlLabel control={<Checkbox />} label="Curah Hujan" />
+                                    <FormControlLabel control={<Checkbox />} label="Suhu Udara" />
+                                </FormGroup>
 
                             </div>
                         </Disclosure.Panel>
