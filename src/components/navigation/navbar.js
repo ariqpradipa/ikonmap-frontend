@@ -11,7 +11,7 @@ export default function Navbar() {
       <AppBar
         position="static"
         color="default"
-        elevation={0}
+        elevation={4}
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>

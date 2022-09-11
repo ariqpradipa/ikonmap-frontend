@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { MapContainer, TileLayer} from 'react-leaflet';
 
 import Home from "./pages/homePage";
 import About from "./pages/aboutPage";
