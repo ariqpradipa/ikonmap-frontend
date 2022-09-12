@@ -18,17 +18,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import Checkbox from '@mui/material/Checkbox';
-import FormLabel from '@mui/material/FormLabel';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 
 import { Disclosure, Transition } from '@headlessui/react'
 
-import MenuItems from './menuItems';
 import Maps from '../gis/maps';
 
 //Icons
@@ -162,6 +155,7 @@ export default function PersistentDrawerLeft() {
                     </IconButton>
                 </DrawerHeader>
 
+                {/* Sidebar Menu Items */}
                 <Divider />
                 <div className="flex flex-col">
 
@@ -244,7 +238,9 @@ export default function PersistentDrawerLeft() {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
+
                 <Maps tipePeta={mapType} />
+                
             </Main>
         </Box>
     );

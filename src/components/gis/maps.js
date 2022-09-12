@@ -41,7 +41,6 @@ export default function Maps(props) {
 
     const center = [-2.735488799778783, 102.90157669923218]
 
-
     return (
         <>
             {console.log(mapUrl)}
