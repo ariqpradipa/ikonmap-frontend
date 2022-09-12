@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
     MapContainer,
     TileLayer,
@@ -15,16 +15,26 @@ export default function Maps(props) {
 
     const tipePeta = props.tipePeta;
     const [mapUrl, setMapUrl] = useState("http://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}")
+    const ref = useRef(null);
 
     useEffect(() => {
 
+        var mapUrls;
+
         if (tipePeta === '1') {
-            setMapUrl('http://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}')
+            mapUrls = 'http://mt0.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}'
+            setMapUrl(mapUrls)
         } else if (tipePeta === '2') {
-            setMapUrl('http://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}')
+            mapUrls = 'http://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}'
+            setMapUrl(mapUrls)
         } else if (tipePeta === '3') {
-            setMapUrl('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png')
+            mapUrls = 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png'
+            setMapUrl(mapUrls)
             console.log("peta openstreet")
+        }
+
+        if (ref.current) {
+            ref.current.setUrl(mapUrls);
         }
 
     }, [mapUrl, tipePeta])
@@ -37,6 +47,7 @@ export default function Maps(props) {
             {console.log(mapUrl)}
             <MapContainer center={center} zoom={13} scrollWheelZoom={true}>
                 <TileLayer
+                    ref={ref}
                     url={mapUrl}
                 />
 
