@@ -12,8 +12,28 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import Checkbox from '@mui/material/Checkbox';
+import FormLabel from '@mui/material/FormLabel';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+
+import { Disclosure, Transition } from '@headlessui/react'
 
 import MenuItems from './menuItems';
+import Maps from '../gis/maps';
+
+//Icons
+import MapIcon from '@mui/icons-material/Map';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
 const drawerWidth = 240;
 
@@ -65,6 +85,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [mapType, setMapType] = React.useState(1);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -72,6 +93,11 @@ export default function PersistentDrawerLeft() {
 
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+
+    const mapChange = (event) => {
+        setMapType(event.target.value);
+        console.log(mapType)
     };
 
     return (
@@ -136,38 +162,89 @@ export default function PersistentDrawerLeft() {
                     </IconButton>
                 </DrawerHeader>
 
-                <MenuItems />
+                <Divider />
+                <div className="flex flex-col">
+
+                    {/*Tipe Peta*/}
+                    <Disclosure>
+                        <Disclosure.Button>
+                            <div className="flex flex-row border-2 rounded-md border-black m-2 p-1">
+                                <div className="m-1 flex flex-row">
+                                    <div className="pr-6">
+                                        <MapIcon />
+                                    </div>
+                                    Tipe Peta
+                                </div>
+                            </div>
+                        </Disclosure.Button>
+                        <Transition
+                            enter="transition duration-100 ease-out"
+                            enterFrom="transform scale-95 opacity-0"
+                            enterTo="transform scale-100 opacity-100"
+                            leave="transition duration-75 ease-out"
+                            leaveFrom="transform scale-100 opacity-100"
+                            leaveTo="transform scale-95 opacity-0"
+                        >
+                            <Disclosure.Panel className="text-gray-800">
+                                <div className="flex pl-[6%]">
+
+                                    <FormControl>
+                                        <RadioGroup
+                                            aria-labelledby="maps-type-label"
+                                            defaultValue="1"
+                                            name="maps-type-group"
+                                            onChange={mapChange}
+
+                                        >
+                                            <FormControlLabel value="1" control={<Radio />} label="Google Maps (Satelit)" />
+                                            <FormControlLabel value="2" control={<Radio />} label="Google Maps (Jalan)" />
+                                            <FormControlLabel value="3" control={<Radio />} label="Open Street Map" />
+                                        </RadioGroup>
+                                    </FormControl>
+
+                                </div>
+                            </Disclosure.Panel>
+                        </Transition>
+                    </Disclosure>
+
+                    {/*Prakiraan Cuaca*/}
+                    <Disclosure>
+                        <Disclosure.Button>
+                            <div className="flex flex-row border-2 rounded-md border-black m-2 p-1">
+                                <div className="m-1 flex flex-row">
+                                    <div className="pr-6">
+                                        <WbSunnyIcon />
+                                    </div>
+                                    Prakiraan Cuaca
+                                </div>
+                            </div>
+                        </Disclosure.Button>
+                        <Transition
+                            enter="transition duration-100 ease-out"
+                            enterFrom="transform scale-95 opacity-0"
+                            enterTo="transform scale-100 opacity-100"
+                            leave="transition duration-75 ease-out"
+                            leaveFrom="transform scale-100 opacity-100"
+                            leaveTo="transform scale-95 opacity-0"
+                        >
+                            <Disclosure.Panel className="text-gray-800">
+                                <div className="flex pl-[6%]">
+
+                                    <FormGroup>
+                                        <FormControlLabel control={<Checkbox />} label="Curah Hujan" />
+                                        <FormControlLabel control={<Checkbox />} label="Suhu Udara" />
+                                    </FormGroup>
+
+                                </div>
+                            </Disclosure.Panel>
+                        </Transition>
+                    </Disclosure>
+                </div>
 
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
+                <Maps tipePeta={mapType} />
             </Main>
         </Box>
     );

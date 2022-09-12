@@ -30,14 +30,7 @@ export default function Navbar() {
             >
               Peta
             </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="/tentang"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Tentang
-            </Link>
+            
           </nav>
           <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
             Masuk
